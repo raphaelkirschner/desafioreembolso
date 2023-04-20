@@ -4,7 +4,7 @@ import br.com.decolar.reembolso.model.Reembolso;
 
 import java.util.List;
 
-public interface ReembolsoService {
+public interface ReembolsoServices {
     List<Reembolso> listarTodos();
 
     Reembolso cadastrar(Reembolso detalhesReembolso);
