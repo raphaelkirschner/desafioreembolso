@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -35,7 +36,7 @@ public class ReembolsoController {
         return ResponseEntity.ok(new ReembolsoResponse<Reembolso>(this.reembolsoServices.cadastrar(reembolso)));
     }
 
-    @PutMapping(path = "/{id}")
+    @PutMapping(path = "/atualizar/{id}")
     public ResponseEntity<ReembolsoResponse<Reembolso>> atualizar(@PathVariable(name = "id") String id,@Valid @RequestBody Reembolso reembolso, BindingResult result){
         List<String> erros = ReembolsoValidator.validarReembolso(result, reembolso);
 
@@ -43,7 +44,21 @@ public class ReembolsoController {
             return ResponseEntity.badRequest().body(new ReembolsoResponse<Reembolso>(erros));
         }
 
-        reembolso.setId(id);
         return ResponseEntity.ok(new ReembolsoResponse<Reembolso>(this.reembolsoServices.atualizar(reembolso)));
+    }
+
+    @PatchMapping(path = "/atualizarReembolsado/{id}")
+    public ResponseEntity<ReembolsoResponse<Reembolso>> atualizarReembolsado(@PathVariable(name = "id") String id,@RequestBody Reembolso reembolso, BindingResult result){
+        List<String> erros = new ArrayList<String>();
+
+        if (result.hasErrors()) {
+            result.getAllErrors().forEach(erro -> erros.add(erro.getDefaultMessage()));
+        }
+
+        if (!erros.isEmpty()) {
+            return ResponseEntity.badRequest().body(new ReembolsoResponse<Reembolso>(erros));
+        }
+
+        return ResponseEntity.ok(new ReembolsoResponse<Reembolso>(this.reembolsoServices.atualizarReembolsado(id, reembolso)));
     }
 }

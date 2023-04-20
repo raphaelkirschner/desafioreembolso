@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ReembolsoServicesImpl implements ReembolsoServices {
     @Autowired
@@ -17,13 +19,30 @@ public class ReembolsoServicesImpl implements ReembolsoServices {
         return this.reembolsoRepository.findAll();
     }
 
-    @Override
-    public Reembolso cadastrar(Reembolso detalhesReembolso) {
-        return this.reembolsoRepository.save(detalhesReembolso);
+    public Reembolso listarPorId(String id) {
+        Optional<Reembolso> reembolso = reembolsoRepository.findById(id);
+        return reembolso.get();
     }
 
     @Override
-    public Reembolso atualizar(Reembolso detalhesReembolso) {
-        return this.reembolsoRepository.save(detalhesReembolso);
+    public Reembolso cadastrar(Reembolso reembolso) {
+        return this.reembolsoRepository.save(reembolso);
+    }
+
+    @Override
+    public Reembolso atualizar(Reembolso reembolso) {
+        return this.reembolsoRepository.save(reembolso);
+    }
+
+    @Override
+    public Reembolso atualizarReembolsado(String id, Reembolso reembolso) {
+        Reembolso reembolsoAll = this.listarPorId(id);
+
+        if (reembolsoAll != null)
+        {
+            reembolsoAll.setReembolsado(reembolso.isReembolsado());
+        }
+
+        return this.reembolsoRepository.save(reembolsoAll);
     }
 }

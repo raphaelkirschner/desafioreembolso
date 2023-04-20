@@ -7,7 +7,9 @@ import java.util.List;
 public interface ReembolsoServices {
     List<Reembolso> listarTodos();
 
-    Reembolso cadastrar(Reembolso detalhesReembolso);
+    Reembolso cadastrar(Reembolso reembolso);
 
-    Reembolso atualizar(Reembolso detalhesReembolso);
+    Reembolso atualizar(Reembolso reembolso);
+
+    Reembolso atualizarReembolsado(String id, Reembolso reembolso);
 }

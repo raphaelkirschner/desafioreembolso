@@ -9,21 +9,11 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class ReembolsoApplication {
 
-	/*
-    We register a bean of type MongoDBBeforeSaveEventListener. This will make sure that the MongoDB event
-    listener will be called by SpringBoot just before a save operation is about to happen.
-    In this listener, we'll encrypt all the values in the document before it is being stored to the database.
-     */
 	@Bean
 	public ReembolsoBeforeSaveEventListener reembolsoBeforeSaveEventListener() {
 		return new ReembolsoBeforeSaveEventListener();
 	}
 
-	/*
-    We register a bean of type MongoDBAfterLoadEventListener. This will make sure that the MongoDB event
-    listener will be called by springBoot right after a load operation has happened.
-    In this listener, we'll decrypt the values in the document loaded before it mapped to an object.
-     */
 	@Bean
 	public ReembolsoAfterLoadEventListener reembolsoAfterLoadEventListener() {
 		return new ReembolsoAfterLoadEventListener();
