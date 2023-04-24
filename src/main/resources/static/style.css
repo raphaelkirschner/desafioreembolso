@@ -1,0 +1,82 @@
+h1 {
+  text-align: center;
+}
+body {
+  background-color: #111;
+  color: #eee;
+  }
+  
+  table {
+  border: 1px solid #666;
+  max-width: 1800px;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  margin-top: 20px;
+  }
+  
+  th,
+  td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+  background-color: #222;
+  color: #fff;
+  }
+  
+  tr:nth-child(even) {
+  background-color: #222;
+  }
+  
+  tr:hover {
+  background-color: #333;
+  }
+  
+  .dataForm {
+  background-color: #333;
+  color: #eee;
+  border: 1px solid #666;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 5px;
+  }
+  
+  label {
+  color: #fff;
+  }
+  
+  input[type="text"],
+  select {
+  color: #eee;
+  background-color: #222;
+  border: 1px solid #666;
+  padding: 5px;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+  }
+  
+  button {
+  background-color: #4c72af;
+  color: #eee;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0;
+  cursor: pointer;
+  }
+
+  select.invalid, input.invalid {
+    border-color: red;
+  }
