@@ -4,9 +4,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Document("detalhesReembolso")
 public class Reembolso {
@@ -14,20 +12,18 @@ public class Reembolso {
     private String id;
 
     @NotBlank(message = "Pedido não pode ser vazio")
-    @NotNull(message = "Pedido não pode ser nulo")
     @Size(max = 20, message = "Pedido excede a quantidade de 20 caracteres")
     private String idPedido;
 
     @NotBlank(message = "Nome não pode ser vazio")
-    @NotNull(message = "Nome não pode ser nulo")
     @Size(max = 100, message = "Nome excede a quantidade de 100 caracteres")
     private String nomeCliente;
 
-    @NotNull(message = "Telefone não pode ser nulo")
+    @NotBlank(message = "Telefone não pode ser nulo")
     @Size(min = 10, max = 11, message = "Telefone deve ter 10 ou 11 números")
     private String telefoneCliente;
 
-    @NotNull(message = "CPF não pode ser nulo")
+    @NotBlank(message = "CPF não pode ser nulo")
     @CPF(message = "CPF inválido")
     private String cpfCliente;
 
