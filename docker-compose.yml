@@ -1,31 +1,20 @@
-version: '3.1'
+version: '3.9'
 services:
   mongo:
     image: mongo
-    restart: always
     ports:
-      - 27017:27017
+      - 9091:27017
     networks:
-      - spring-cloud-network
-  mongo-express:
-    image: mongo-express
-    restart: always
-    ports:
-      - 8081:8081
-    depends_on:
-      - mongo
-    networks:
-      - spring-cloud-network
+      - spring-network
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
+    environment:
+      - spring.data.mongodb.host=mongo
     ports:
-      - 8080:8080
+      - 9090:8080
     depends_on:
       - mongo
     networks:
-      - spring-cloud-network
+      - spring-network
 networks:
-  spring-cloud-network:
-    driver: bridge
+  spring-network:

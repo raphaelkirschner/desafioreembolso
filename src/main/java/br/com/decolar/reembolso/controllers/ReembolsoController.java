@@ -15,18 +15,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/reembolso")
+@RequestMapping(path = "/")
 public class ReembolsoController {
 
     @Autowired
     private ReembolsoServices reembolsoServices;
 
     @GetMapping
+    public ModelAndView Index(){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("Home/Index");
+        return mv;
+    }
+
+    @GetMapping(path = "api/reembolso")
     public ResponseEntity<ReembolsoResponse<List<Reembolso>>> listarTodos(){
         return ResponseEntity.ok(new ReembolsoResponse<List<Reembolso>>(this.reembolsoServices.listarTodos()));
     }
 
-    @PostMapping
+    @PostMapping(path = "api/reembolso")
     public ResponseEntity<ReembolsoResponse<Reembolso>> cadastrar(@Valid @RequestBody Reembolso reembolso, BindingResult result){
         List<String> erros = ReembolsoValidator.validarReembolso(result, reembolso);
 
@@ -37,7 +44,7 @@ public class ReembolsoController {
         return ResponseEntity.ok(new ReembolsoResponse<Reembolso>(this.reembolsoServices.cadastrar(reembolso)));
     }
 
-    @PutMapping(path = "/atualizar/{id}")
+    @PutMapping(path = "api/reembolso/atualizar/{id}")
     public ResponseEntity<ReembolsoResponse<Reembolso>> atualizar(@PathVariable(name = "id") String id,@Valid @RequestBody Reembolso reembolso, BindingResult result){
         List<String> erros = ReembolsoValidator.validarReembolso(result, reembolso);
 
@@ -48,7 +55,7 @@ public class ReembolsoController {
         return ResponseEntity.ok(new ReembolsoResponse<Reembolso>(this.reembolsoServices.atualizar(reembolso)));
     }
 
-    @PatchMapping(path = "/atualizarReembolsado/{id}")
+    @PatchMapping(path = "api/reembolso/atualizarReembolsado/{id}")
     public ResponseEntity<ReembolsoResponse<Reembolso>> atualizarReembolsado(@PathVariable(name = "id") String id,@RequestBody Reembolso reembolso, BindingResult result){
         List<String> erros = new ArrayList<String>();
 

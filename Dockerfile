@@ -1,9 +1,4 @@
-FROM maven:3.8.3-openjdk-17
-
+FROM openjdk:20
 WORKDIR /app
-
-COPY . .
-
-RUN mvn clean install
-
-CMD mvn spring-boot:run
+COPY target/reembolso-0.0.1-SNAPSHOT.jar ./app.jar
+CMD ["java","-jar","./app.jar"]
