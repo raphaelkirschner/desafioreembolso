@@ -1,5 +1,4 @@
-const url = "http://localhost:9090/api/reembolso/";
-
+const url = window.location.protocol + "//" + window.location.host + "/" + "api/reembolso/";
 
 function GET() {
     return fetch(url, {
