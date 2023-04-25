@@ -99,11 +99,7 @@ function Save() {
 }
 function Change(id, status) {
 
-const data = {
-    reembolsado: status
-}
-
-  PATCH(data, id).then(data => {
+  PUT(id, status).then(data => {
     console.log(data);
   })
     .catch(error => console.error(error));

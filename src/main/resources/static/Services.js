@@ -20,16 +20,11 @@ function POST(data) {
         .then(response => response.json());
 
 }
-function PATCH(data, id) {
-    const urls = url + "atualizarReembolsado/"+ id;
+function PUT(id, isReembolsado) {
+    const urls = url + "atualizar/" + id + "/" + isReembolsado;
 
-    const options = {
-        method: 'PATCH',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    };
-    return fetch(urls, options)
+    return fetch(urls, {
+        method: "PUT"
+    })
         .then(response => response.json());
 }

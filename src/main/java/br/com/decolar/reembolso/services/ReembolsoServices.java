@@ -11,5 +11,5 @@ public interface ReembolsoServices {
 
     Reembolso atualizar(Reembolso reembolso);
 
-    Reembolso atualizarReembolsado(String id, Reembolso reembolso);
+    Reembolso atualizarReembolsado(String id, boolean isReembolsado);
 }

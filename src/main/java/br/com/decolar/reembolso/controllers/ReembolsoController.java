@@ -1,7 +1,7 @@
 package br.com.decolar.reembolso.controllers;
 
-import br.com.decolar.reembolso.model.ReembolsoValidator;
 import br.com.decolar.reembolso.model.Reembolso;
+import br.com.decolar.reembolso.model.ReembolsoValidator;
 import br.com.decolar.reembolso.responses.ReembolsoResponse;
 import br.com.decolar.reembolso.services.ReembolsoServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -55,18 +54,8 @@ public class ReembolsoController {
         return ResponseEntity.ok(new ReembolsoResponse<Reembolso>(this.reembolsoServices.atualizar(reembolso)));
     }
 
-    @PatchMapping(path = "api/reembolso/atualizarReembolsado/{id}")
-    public ResponseEntity<ReembolsoResponse<Reembolso>> atualizarReembolsado(@PathVariable(name = "id") String id,@RequestBody Reembolso reembolso, BindingResult result){
-        List<String> erros = new ArrayList<String>();
-
-        if (result.hasErrors()) {
-            result.getAllErrors().forEach(erro -> erros.add(erro.getDefaultMessage()));
-        }
-
-        if (!erros.isEmpty()) {
-            return ResponseEntity.badRequest().body(new ReembolsoResponse<Reembolso>(erros));
-        }
-
-        return ResponseEntity.ok(new ReembolsoResponse<Reembolso>(this.reembolsoServices.atualizarReembolsado(id, reembolso)));
+    @PutMapping(path = "api/reembolso/atualizar/{id}/{reembolsado}")
+    public ResponseEntity<Reembolso> atualizarReembolsado(@PathVariable(name = "id") String id,@PathVariable(name = "reembolsado") boolean isReembolsado){
+        return ResponseEntity.ok(this.reembolsoServices.atualizarReembolsado(id, isReembolsado));
     }
 }

@@ -35,14 +35,14 @@ public class ReembolsoServicesImpl implements ReembolsoServices {
     }
 
     @Override
-    public Reembolso atualizarReembolsado(String id, Reembolso reembolso) {
-        Reembolso reembolsoAll = this.listarPorId(id);
+    public Reembolso atualizarReembolsado(String id, boolean isReembolsado) {
+        Reembolso reembolso = this.listarPorId(id);
 
-        if (reembolsoAll != null)
+        if (reembolso != null)
         {
-            reembolsoAll.setReembolsado(reembolso.isReembolsado());
+            reembolso.setReembolsado(isReembolsado);
         }
 
-        return this.reembolsoRepository.save(reembolsoAll);
+        return this.reembolsoRepository.save(reembolso);
     }
 }
