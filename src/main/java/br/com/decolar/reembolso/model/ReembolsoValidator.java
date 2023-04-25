@@ -1,4 +1,4 @@
-package br.com.decolar.reembolso.app;
+package br.com.decolar.reembolso.model;
 
 import br.com.decolar.reembolso.model.Reembolso;
 import br.com.decolar.reembolso.model.TipoChavePIX;

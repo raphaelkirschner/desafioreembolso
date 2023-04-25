@@ -16,7 +16,7 @@ public class ReembolsoAfterLoadEventListener extends AbstractMongoEventListener<
         Document eventObject = event.getDocument();
 
         List<String> keysNotToDecrypt = Arrays.asList("_class","_id","idPedido","tipoPagamento",
-                "reembolsado","tipoChavePIX","chavePIX","banco","bancoAgencia","bancoConta");
+                "reembolsado","tipoChavePIX","banco","bancoAgencia","bancoConta");
 
         for ( String key : eventObject.keySet() ) {
             if (!keysNotToDecrypt.contains(key)) {

@@ -16,7 +16,7 @@ public class ReembolsoBeforeSaveEventListener extends AbstractMongoEventListener
         Document eventObject = event.getDocument();
 
         List<String> keysNotToEncrypt = Arrays.asList("_class","_id","idPedido","tipoPagamento",
-                "reembolsado","tipoChavePIX","chavePIX","banco","bancoAgencia","bancoConta");
+                "reembolsado","tipoChavePIX","banco","bancoAgencia","bancoConta");
 
         for ( String key : eventObject.keySet() ) {
             if (!keysNotToEncrypt.contains(key)) {

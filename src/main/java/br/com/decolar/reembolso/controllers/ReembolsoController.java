@@ -1,6 +1,6 @@
 package br.com.decolar.reembolso.controllers;
 
-import br.com.decolar.reembolso.app.ReembolsoValidator;
+import br.com.decolar.reembolso.model.ReembolsoValidator;
 import br.com.decolar.reembolso.model.Reembolso;
 import br.com.decolar.reembolso.responses.ReembolsoResponse;
 import br.com.decolar.reembolso.services.ReembolsoServices;
